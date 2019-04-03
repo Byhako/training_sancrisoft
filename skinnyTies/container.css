@@ -1,0 +1,123 @@
+.container {
+  max-width: 1120px;
+  padding: 0 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: auto;
+}
+
+.triad {
+  margin: 0;
+  margin-bottom: 75px;
+  display: flex;
+  padding: 0;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.triad li {
+  box-sizing: border-box;
+  margin-right: 5%;
+  position: relative;
+  width: 30%;
+}
+
+.triad li:last-child {
+  margin-right: 0px;
+}
+
+.triad a {
+  width: 100%;
+  background-color: #f4f4f4;
+  text-decoration: none;
+}
+
+.triad a h2 {
+  position: absolute;
+  right: 15px;
+  top: 0px;
+  color: #202020;
+  font-size: 26px;
+  text-align: right;
+  font-weight: 600;
+  font-family: tahoma;
+  text-align: left;
+}
+
+.triad a img {
+  max-width: 100%;
+}
+
+.our-story {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.our-story span {
+  font-size: 36px;
+  font-style: italic;
+  font-weight: 300;
+}
+
+.our-story a {
+  text-decoration: none;
+  cursor: pointer;
+  font-size: 16px;
+  letter-spacing: 3px;
+  text-rendering: optimizeLegibility;
+  text-transform: uppercase;
+  color: #33A1FF;
+  margin-top: 15px;
+}
+
+.our-story a:hover {
+  text-decoration: underline;
+}
+
+@media screen and (max-width: 900px) {
+  .our-story span {
+    font-size: 26px;
+  }
+
+  .triad {
+    margin-bottom: 50px;
+  }
+
+  .triad li {
+    width: 46%;
+    margin: 0;
+  }
+
+  .triad li:first-child {
+    margin-right: 8%;
+  }
+
+  .triad li:last-child {
+    margin-top: 30px;
+  }
+}
+@media screen and (max-width: 600px) {
+  .our-story span {
+    font-size: 20px;
+  }
+}
+@media screen and (max-width: 500px) {
+  .triad {
+    margin-bottom: 30px;
+  }
+
+  .triad li {
+    width: 100%;
+    margin: 0;
+  }
+
+  .triad li:first-child {
+    margin-right: 0;
+    margin-bottom: 30px;
+  }
+}
+
+/*# sourceMappingURL=container.css.map */

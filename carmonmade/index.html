@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Slabo+13px" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Serif" rel="stylesheet">
+    <title>carbonmade</title>
+    <link rel="shortcut icon" href="favicon.ico" />
+
+    <link rel="stylesheet" href="style.css">
+  </head>
+
+  <body>
+    <div class="wrap">
+      <header>
+        <a href="#">
+          <img src="logo.png" alt="logo">
+        </a>
+      </header>
+    
+      <div id="container">
+        <div id="head">
+          <h1>Sign up for Meh.</h1>
+          <h6>Everything you need to build a pretty online portafolio</h6>
+          <div class="tag">
+            <div class="cuadro">
+              <div class="cuadro-row">
+                <div class="linea"></div>
+                <span class="cursive">100%</span>
+                <div class="linea"></div>
+              </div>
+              <p class="free">FREE</p>
+              <div class="cuadro-row">
+                <div class="linea"></div>
+                <span class="cursive">for real</span>
+                <div class="linea"></div>
+              </div>
+
+
+            </div>
+            <div class="triangulo">
+              <img src="triangulo.png" alt="trian">
+            </div>
+
+          </div>
+        </div>
+    
+        <div class='section'>
+          <div class="title">
+            <span>1</span>
+            <p>First, name your portafolio</p>
+          </div>
+    
+          <form>
+            <div class="content-input">
+              <label for="title">Portafolio title</label>
+              <input type="text" id='title' />
+              <span class='icon icon-title'>!</span>
+              <p class="text-required title-required">Required</p>
+            </div>
+    
+            <div class="content-input">
+              <label for="address">Portafolio address</label>
+              <input type="text" id='address' />
+              <span id="domain">.carbonmande.com</span>
+              <span class='icon icon-address'>!</span>
+              <p class="text-required address-required">Required</p>
+            </div>
+          </form>
+        </div>
+    
+        <div class='section'>
+          <div class="title">
+            <span>2</span>
+            <p>Now, enter your account details</p>
+          </div>
+    
+          <form>
+            <label for="name">Name</label>
+            <input type="text" id='name' />
+    
+            <label for="email">Email</label>
+            <input type="text" id='email' />
+            <small id="note">NOTE: We never share your mail.</small>
+            
+            <label for="password">Password</label>
+            <input type="password" id='password' />
+    
+            <div class="checkin">
+              <input type="checkbox" id="checkbox">
+              <small id="show-password">Show Password</small>
+            </div>
+    
+          </form>
+        </div>
+    
+        <div class="checkin accept-terms">
+          <input type="checkbox" id="checkbox-accept">
+          <small id="label-accept">I accept the <mark>Terms od Use, Privacy policy</mark> and <mark>Related policy</mark></small>
+          <span class='icon icon-check'>!</span>
+          <p class="text-required check-required">Required</p>
+        </div>
+        
+        <button type="button" id="button">Create your portafolio</button>
+      </div>
+    
+      <img src="medusa.png" alt="medusa" id='medusa' />
+      <img src="b1.png" alt="burbuja1" id='burbuja1'/>
+      <img src="b2.png" alt="burbuja2" id='burbuja2'/>
+      <img src="serpiente.png" alt="serpiente" id='serpiente' />
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src='./index.js'></script>
+  </body>
+
+</html>

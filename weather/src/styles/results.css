@@ -1,0 +1,46 @@
+.results, .details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title {
+  font-size: 65px;
+  color: #333;
+  font-weight: 200;
+  text-align: center;
+}
+
+.data {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin: 35px;
+  cursor: pointer;
+}
+
+.card img, .details img {
+  height: 130px;
+}
+
+.card h2, .details h2 {
+  font-size: 30px;
+  color: #333;
+  font-weight: 200;
+}
+
+.more-details {
+  font-size: 34px;
+  font-weight: 200;
+  max-width: 400px;
+  margin: 0 auto;
+  text-align: center;
+}

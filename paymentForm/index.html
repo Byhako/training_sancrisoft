@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Payment</title>
+  <link rel="icon" href="favicon.ico" type="image/x-icon">  
+
+  <link rel="stylesheet" 
+    href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+    integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+    crossorigin="anonymous"
+  >
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <h1>Great, that's &#163;124.97!</h1>
+  <div class="content">
+
+    <fieldset>
+      <div class="row-low size">
+        <label for="paypal" class="label">PayPal
+          <input type="radio" name="pay" value="paypal" id='paypal' checked>
+          <span class="checkmark"></span>
+        </label>
+        <figure class="paypal">
+          <img src="paypal.png" alt="paypal">
+        </figure>
+      </div>
+      
+      <div class="row-low size">
+        <label for="card" class="label">Debit/credit card
+          <input type="radio" name="pay" value="card" id='card'>
+          <span class="checkmark"></span>
+        </label>
+        <figure>
+          <img src="visa.png" alt="visa" class="visa">
+        </figure>
+        <figure class="master">
+          <img src="master.png" alt="master">
+        </figure>
+        <figure class="maestro">
+          <img src="maestro.png" alt="maestro">
+        </figure>
+      </div>
+    </fieldset>
+    
+    <div class="row-dark size">
+      <p class="static">Card number</p>
+      <input type="number" min='0' max='9999' id='c1' placeholder="xxxx">
+      <input type="number" min='0' max='9999' id='c2' placeholder="xxxx">
+      <input type="number" min='0' max='9999' id='c3' placeholder="xxxx">
+      <input type="number" min='0' max='9999' id='c4' placeholder="xxxx">
+    </div>
+    
+    <div class="row-dark size">
+      <p class="static expiry">Expiry</p>
+      <input type="text" id='expiry' placeholder="MM/YY" />
+      <p class="static expiry">CVC</p>
+      <input type="number" id='cvc' placeholder='123' />
+      <i class="fas fa-exclamation-circle" id='info'></i>
+    </div>
+
+  </div>
+
+  <button class="size btn">
+    <i class="fas fa-lock"></i>&nbsp;&nbsp;
+    Finish and pay
+  </button>
+
+  <div class="message-error">
+    Required field
+  </div>
+
+  <div class="message-success">
+    Success
+  </div>
+
+  <aside id='aside'>
+    Ingresa el código de verificación.
+  </aside>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script>
+    $(document).ready(function(){
+      const dataCard = $('.row-dark')
+      const input1 = $('#c1')
+      const input2 = $('#c2')
+      const input3 = $('#c3')
+      const input4 = $('#c4')
+      const expiry = $('#expiry')
+      const cvc = $('#cvc')
+      const button = $('.btn')
+      const messageError = $('.message-error')
+      const messageSuccess = $('.message-success')
+
+      $('#card').click(function () {
+        dataCard.css('display', 'block')
+        input1.focus()
+      })
+      $('#paypal').click(function () {
+        dataCard.css('display', 'none')
+        messageError.css('display', 'none')
+        messageSuccess.css('display', 'none')
+        input1.removeClass('required')
+        input2.removeClass('required')
+        input3.removeClass('required')
+        input4.removeClass('required')
+        expiry.removeClass('required')
+        cvc.removeClass('required')
+      })
+      $('#info').hover(function () {
+        $('#aside').css('display', 'block')
+      })
+      $('#info').mouseleave(function () {
+        $('#aside').css('display', 'none')
+      })
+
+      // Manejando formulario card number
+      input1.keyup(function () {
+        input1.addClass('required')
+        if (input1.val().length === 4) {
+          input1.removeClass('required')
+          input2.addClass('required')
+          input2.focus()
+        }
+      })
+
+      input2.keyup(function () {
+        input2.addClass('required')
+        if (input2.val().length === 4) {
+          input2.removeClass('required')
+          input3.addClass('required')
+          input3.focus()
+        }
+      })
+
+      input3.keyup(function () {
+        input3.addClass('required')
+        if (input3.val().length === 4) {
+          input3.removeClass('required')
+          input4.addClass('required')
+          input4.focus()
+        }
+      })
+
+      input4.keyup(function () {
+        input4.addClass('required')
+        if (input4.val().length === 4) {
+          input4.removeClass('required')
+          expiry.addClass('required')
+          expiry.focus()
+        }
+      })
+
+      expiry.keyup(function () {
+        expiry.addClass('required')
+        if (expiry.val().length === 5) {
+          expiry.removeClass('required')
+          cvc.addClass('required')
+          cvc.focus()
+        }
+      })
+
+      cvc.keyup(function () {
+        cvc.addClass('required')
+        if (cvc.val().length === 3) {
+          cvc.removeClass('required')
+          button.focus()
+        }
+      })
+
+      button.click(function () {
+        console.log('click')
+        let ban = true
+        if (!input1.val()) {
+          input1.addClass('required')
+          messageError.css('display', 'block')
+          ban = false
+        }
+        if (!input2.val()) {
+          input2.addClass('required')
+          messageError.css('display', 'block')
+          ban = false
+        }
+        if (!input3.val()) {
+          input3.addClass('required')
+          messageError.css('display', 'block')
+          ban = false
+        }
+        if (!input4.val()) {
+          input4.addClass('required')
+          messageError.css('display', 'block')
+          ban = false
+        }
+        if (!expiry.val()) {
+          expiry.addClass('required')
+          messageError.css('display', 'block')
+          ban = false
+        }
+        if (!cvc.val()) {
+          cvc.addClass('required')
+          messageError.css('display', 'block')
+          ban = false
+        }
+
+        console.log('hhhhh')
+        if (ban) {
+          messageError.css('display', 'none')
+          messageSuccess.css('display', 'block')
+        }
+      })
+    })
+  </script>
+</body>
+</html>
