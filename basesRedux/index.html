@@ -107,20 +107,10 @@
       }
     }
 
-
-    class ConnectedTodos extends React.Component {
-      render() {
-        return (
-          <Context.Consumer>
-            {(store) => {
-              const { todos } = store.getState()
-              return <Todos todos={todos} dispatch={store.dispatch} />
-            }}
-          </Context.Consumer>
-        )
-      }
-    }
-
+    mapStateToPropsByTodos = (state) => ({
+      todos: state.todos
+    })
+    const ConnectedTodos = connect(mapStateToPropsByTodos)(Todos)
 
     class Goals extends React.Component {
       addItem = (e) => {
@@ -152,29 +142,20 @@
       }
     }
 
-
-    class ConnectedGoals extends React.Component {
-      render() {
-        return (
-          <Context.Consumer>
-            {(store) => {
-              const { goals } = store.getState()
-              return <Goals goals={goals} dispatch={store.dispatch} />
-            }}
-          </Context.Consumer>
-        )
-      }
-    }
+    mapStateToPropsByGoals = (state) => ({
+      goals: state.goals
+    })
+    const ConnectedGoals = connect(mapStateToPropsByGoals)(Goals)
 
 
     class App extends React.Component {
       componentDidMount () {
-        const { store } = this.props
-        store.dispatch(handleInitialData())
-        store.subscribe(() => this.forceUpdate())
+        const { dispatch } = this.props
+        dispatch(handleInitialData())
       }
+
       render() {
-        const { loading } = this.props.store.getState()
+        const { loading } = this.props
         if (loading === true) {
           return <h3>Loading</h3>
         }
@@ -187,18 +168,10 @@
       }
     }
 
-
-    class ConnectedApp extends React.Component {
-      render() {
-        return (
-          <Context.Consumer>
-            {(store) => (
-              <App store={store} />
-            )}
-          </Context.Consumer>
-        )
-      }
-    }
+    mapStateToPropsByApp = (state) => ({
+      loading: state.loading
+    })
+    const ConnectedApp = connect(mapStateToPropsByApp)(App)
 
 
     const Context = React.createContext()
