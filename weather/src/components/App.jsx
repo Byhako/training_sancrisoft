@@ -8,34 +8,44 @@ import Results from './Results'
 class App extends Component {
 
   state = {
+    inputNav: '',
+    input: '',
     search: false,
     city: ''
   }
 
   toHome = () => this.setState({search: false, city: ''})
 
-  handleSearch = (e) => {
+  handleSearch = e => {
     e.preventDefault()
     const { city } = serializeForm(e.target, { hash: true })
     document.getElementById("form-nav").reset()
     if (city) {
-      this.setState({city, search: true})
+      this.setState({city, search: true, input: '', inputNav: ''})
     }
   }
 
-  clickButton = () => {
-    
-  }
+  handleChange1 = e => this.setState({inputNav: e.target.value})
+  handleChange2 = e => this.setState({input: e.target.value})
 
   render () {
-    const { search, city } = this.state
+    const { search, city, inputNav, input } = this.state
     return (
       <Fragment>
-        <Nav search={this.handleSearch} toHome={this.toHome} clickButton={this.clickButton}/>
+        <Nav
+          search={this.handleSearch}
+          toHome={this.toHome}
+          input={inputNav}
+          change={this.handleChange1}
+        />
         {search ? (
           <Results city={city}/>
         ) : (
-          <Home search={this.handleSearch} />
+          <Home
+            search={this.handleSearch}
+            input={input}
+            change={this.handleChange2}
+          />
         )}
       </Fragment>
     )

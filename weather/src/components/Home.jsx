@@ -1,7 +1,7 @@
 import React from 'react'
 import '../styles/home.css'
 
-function Home ({ search }) {
+const Home = ({ search }) => {
   return (
     <div className='container'>
       <h1>Entre a City and State</h1>
