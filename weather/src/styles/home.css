@@ -3,7 +3,7 @@
   color: #fff;
   padding: 5px;
   width: 100%;
-  height: 90px;
+  height: max-content;;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -85,4 +85,19 @@ input {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+
+@media screen and (max-width: 550px) {
+  .navbar {
+    flex-direction: column;
+  }
+  .navbar a {
+    height: 70px;
+    display: flex;
+    align-items: center;
+  }
+  .form-nav {
+    margin-bottom: 7px;
+  }
 }
