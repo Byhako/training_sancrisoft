@@ -3,11 +3,16 @@ import { Link } from 'react-router-dom'
 import ImageInput from './ImagenInput'
 import serializeForm from 'form-serialize'
 
+import anonimo from './anonimus.png'
+
 class CreateContact extends Component {
   handleSubmit = (e) => {
     e.preventDefault()
     const values = serializeForm(e.target, { hash: true })
-
+    if (!values.avatarURL) {
+      console.log(values)
+      values['avatarURL'] = anonimo
+    }
     if (this.props.onCreateContact) {
 
       this.props.onCreateContact(values)

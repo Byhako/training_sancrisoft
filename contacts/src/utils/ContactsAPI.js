@@ -14,11 +14,13 @@ export const getAll = () =>
   fetch(`${api}/contacts`, { headers })
     .then(res => res.json())
     .then(data => data.contacts)
+    .catch(error => console.log(error))
 
 export const remove = (contact) =>
   fetch(`${api}/contacts/${contact.id}`, { method: 'DELETE', headers })
     .then(res => res.json())
     .then(data => data.contact)
+    .catch(error => console.log(error))
 
 export const create = (body) =>
   fetch(`${api}/contacts`, {
@@ -28,4 +30,6 @@ export const create = (body) =>
       'Content-Type': 'application/json'
     },
     body: JSON.stringify(body)
-  }).then(res => res.json())
+  })
+    .then(res => res.json())
+    .catch(error => console.log(error))

@@ -41,11 +41,6 @@ const resizeImage = (imageURL, canvas, maxHeight) =>
  * submitting them to the server as data URLs. Also, shows a preview of the image.
  */
 class ImageInput extends React.Component {
-  static propTypes = {
-    className: PropTypes.string,
-    name: PropTypes.string,
-    maxHeight: PropTypes.number
-  }
 
   state = {
     value: ''
@@ -112,6 +107,12 @@ class ImageInput extends React.Component {
       </div>
     )
   }
+}
+
+ImageInput.propTypes = {
+  className: PropTypes.string,
+  name: PropTypes.string,
+  maxHeight: PropTypes.number
 }
 
 export default ImageInput

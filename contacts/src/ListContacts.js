@@ -2,11 +2,16 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 
-class ListContacts extends Component {
-  static propTypes = {
-    contacts: PropTypes.array.isRequired,
-    onDeleteContact: PropTypes.func.isRequired
+const WrapperButton = ({ contact, fn }) => {
+  const handleClick = () => {
+    fn(contact)
   }
+  return (
+    <button className="contact-remove" onClick={handleClick}>remove</button>
+  )
+}
+
+class ListContacts extends Component {
 
   state = {
     query: ''
@@ -17,6 +22,8 @@ class ListContacts extends Component {
   }
 
   clearQuery = () => this.updateQuery('')
+
+  handleInput = e => this.updateQuery(e.target.value)
 
   render () {
     const { contacts, onDeleteContact } = this.props
@@ -37,7 +44,7 @@ class ListContacts extends Component {
             className="search-contacts"
             placeholder='Search Contacts'
             value={query}
-            onChange={e => this.updateQuery(e.target.value)}
+            onChange={this.handleInput}
           />
           <Link
             to='/create'
@@ -64,18 +71,18 @@ class ListContacts extends Component {
                 <p>{contact.name}</p>
                 <p>{contact.handle}</p>
               </div>
-              <button
-                className="contact-remove"
-                onClick={() => onDeleteContact(contact)}
-              >
-                remove
-              </button>
+              <WrapperButton contact={contact} fn={onDeleteContact} />
             </li>
           ))}
         </ol>
       </div>
     )
   }
+}
+
+ListContacts.propTypes = {
+  contacts: PropTypes.array.isRequired,
+  onDeleteContact: PropTypes.func.isRequired
 }
 
 
