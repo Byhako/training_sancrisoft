@@ -107,7 +107,7 @@
       }
     }
 
-    mapStateToPropsByTodos = (state) => ({
+    const mapStateToPropsByTodos = (state) => ({
       todos: state.todos
     })
     const ConnectedTodos = connect(mapStateToPropsByTodos)(Todos)
@@ -142,7 +142,7 @@
       }
     }
 
-    mapStateToPropsByGoals = (state) => ({
+    const mapStateToPropsByGoals = (state) => ({
       goals: state.goals
     })
     const ConnectedGoals = connect(mapStateToPropsByGoals)(Goals)
@@ -168,10 +168,46 @@
       }
     }
 
-    mapStateToPropsByApp = (state) => ({
+    const mapStateToPropsByApp = (state) => ({
       loading: state.loading
     })
     const ConnectedApp = connect(mapStateToPropsByApp)(App)
+
+
+    function connect (mapStateToProps) {
+      return (Component) => {
+
+        class Receiver extends React.Component {
+          componentDidMount () {
+            const { subscribe } = this.props.store
+            this.unsuscribe = subscribe(() => this.forceUpdate())
+          }
+
+          componenWillMount () {
+            this.unsuscribe()
+          }
+
+          render () {
+            const { dispatch, getState, } = this.props.store
+            const state = getState()
+            const stateNeede = mapStateToProps(state)
+            return <Component dispatch={dispatch} {...stateNeede}/>
+          }
+        }
+
+        class ConnectComponent extends React.Component {
+          render () {
+            return (
+              <Context.Consumer>
+                {store => <Receiver store={store} />}
+              </Context.Consumer>
+            )
+          }
+        }
+
+        return ConnectComponent
+      }
+    }
 
 
     const Context = React.createContext()
