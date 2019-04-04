@@ -44,6 +44,7 @@
   <script src='https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js'></script>
   <script src='https://tylermcginnis.com/goals-todos-api/index.js'></script>
   <script src='https://unpkg.com/redux-thunk@2.2.0/dist/redux-thunk.min.js'></script>
+  <script src='https://unpkg.com/react-redux@5.0.6/dist/react-redux.min.js'></script>
   <script src="index.js"></script>
   <script type='text/babel'>
     const WrapperButton = ({ item, fn }) => {
@@ -110,7 +111,7 @@
     const mapStateToPropsByTodos = (state) => ({
       todos: state.todos
     })
-    const ConnectedTodos = connect(mapStateToPropsByTodos)(Todos)
+    const ConnectedTodos = ReactRedux.connect(mapStateToPropsByTodos)(Todos)
 
     class Goals extends React.Component {
       addItem = (e) => {
@@ -145,7 +146,7 @@
     const mapStateToPropsByGoals = (state) => ({
       goals: state.goals
     })
-    const ConnectedGoals = connect(mapStateToPropsByGoals)(Goals)
+    const ConnectedGoals = ReactRedux.connect(mapStateToPropsByGoals)(Goals)
 
 
     class App extends React.Component {
@@ -171,61 +172,60 @@
     const mapStateToPropsByApp = (state) => ({
       loading: state.loading
     })
-    const ConnectedApp = connect(mapStateToPropsByApp)(App)
+    const ConnectedApp = ReactRedux.connect(mapStateToPropsByApp)(App)
+  
+    // Library
+    // function connect (mapStateToProps) {
+    //   return (Component) => {
 
+    //     class Receiver extends React.Component {
+    //       componentDidMount () {
+    //         const { subscribe } = this.props.store
+    //         this.unsuscribe = subscribe(() => this.forceUpdate())
+    //       }
 
-    function connect (mapStateToProps) {
-      return (Component) => {
+    //       componenWillMount () {
+    //         this.unsuscribe()
+    //       }
 
-        class Receiver extends React.Component {
-          componentDidMount () {
-            const { subscribe } = this.props.store
-            this.unsuscribe = subscribe(() => this.forceUpdate())
-          }
+    //       render () {
+    //         const { dispatch, getState, } = this.props.store
+    //         const state = getState()
+    //         const stateNeede = mapStateToProps(state)
+    //         return <Component dispatch={dispatch} {...stateNeede}/>
+    //       }
+    //     }
 
-          componenWillMount () {
-            this.unsuscribe()
-          }
+    //     class ConnectComponent extends React.Component {
+    //       render () {
+    //         return (
+    //           <Context.Consumer>
+    //             {store => <Receiver store={store} />}
+    //           </Context.Consumer>
+    //         )
+    //       }
+    //     }
 
-          render () {
-            const { dispatch, getState, } = this.props.store
-            const state = getState()
-            const stateNeede = mapStateToProps(state)
-            return <Component dispatch={dispatch} {...stateNeede}/>
-          }
-        }
+    //     return ConnectComponent
+    //   }
+    // }
 
-        class ConnectComponent extends React.Component {
-          render () {
-            return (
-              <Context.Consumer>
-                {store => <Receiver store={store} />}
-              </Context.Consumer>
-            )
-          }
-        }
-
-        return ConnectComponent
-      }
-    }
-
-
-    const Context = React.createContext()
-    class Provider extends React.Component {
-      render() {
-        return (
-          <Context.Provider value={this.props.store}>
-            {this.props.children}
-          </Context.Provider>
-        )
-      }
-    }
+    // const Context = React.createContext()
+    // class Provider extends React.Component {
+    //   render() {
+    //     return (
+    //       <Context.Provider value={this.props.store}>
+    //         {this.props.children}
+    //       </Context.Provider>
+    //     )
+    //   }
+    // }
 
 
     ReactDOM.render(
-      <Provider store={store}>
+      <ReactRedux.Provider store={store}>
         <ConnectedApp />
-      </Provider>,
+      </ReactRedux.Provider>,
       document.getElementById('app')
     )
 
