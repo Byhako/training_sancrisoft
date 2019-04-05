@@ -20,8 +20,9 @@ export function handleAddPoll (poll) {
       ...poll,
       author: authedUser
     })
-      .then((poll) => dispatch(addPoll(poll)))
+      .then(poll => dispatch(addPoll(poll)))
       .then(() => dispatch(hideLoading()))
+      .catch(error => console.log(error))
   }
 }
 

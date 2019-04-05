@@ -13,6 +13,7 @@ class App extends Component {
   componentDidMount () {
     this.props.dispatch(handleInitialData())
   }
+
   render() {
     return (
       <Router>

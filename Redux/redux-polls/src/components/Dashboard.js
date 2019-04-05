@@ -6,16 +6,10 @@ class Dashboard extends Component {
   state = {
     showAnswered: false
   }
-  showUnaswered = () => {
-    this.setState(() => ({
-      showAnswered: false
-    }))
-  }
-  showAnswered = () => {
-    this.setState(() => ({
-      showAnswered: true
-    }))
-  }
+
+  showUnaswered = () => this.setState({ showAnswered: false })
+  showAnswered = () => this.setState({ showAnswered: true })
+
   render() {
     const { showAnswered } = this.state
     const { answered, unanswered } = this.props
@@ -40,7 +34,7 @@ class Dashboard extends Component {
           </button>
         </div>
         <ul className='dashboard-list'>
-          {list.map((poll) => (
+          {list.map(poll => (
             <li key={poll.id}>
               <Link to={`polls/${poll.id}`}>
                 {poll.question}
@@ -60,8 +54,8 @@ function mapStateToProps ({ authedUser, polls, users }) {
     .sort((a,b) => b.timestamp - a.timestamp)
 
   const unanswered = Object.keys(polls)
-    .filter((id) => !answers.includes(id))
-    .map((id) => polls[id])
+    .filter(id => !answers.includes(id))
+    .map(id => polls[id])
     .sort((a,b) => b.timestamp - a.timestamp)
 
 

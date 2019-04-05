@@ -1,10 +1,10 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-function Leaderboard ({ users }) {
+const Leaderboard = ({ users }) => {
   return (
     <ul>
-      {users.map((user) => (
+      {users.map(user => (
         <li className='user' key={user.id}>
           <img src={user.avatarURL} alt={`Avatar for ${user.name}`} />
 

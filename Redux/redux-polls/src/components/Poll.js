@@ -6,7 +6,7 @@ import { handleAddAnswer } from '../actions/answers'
 const getVoteKeys = () => ['aVotes', 'bVotes', 'cVotes', 'dVotes']
 
 class Poll extends Component {
-  handleAnswer = (answer) => {
+  handleAnswer = answer => {
     const { poll, authedUser } = this.props
     this.answered = true
 
@@ -16,6 +16,7 @@ class Poll extends Component {
       id: poll.id,
     }))
   }
+
   render() {
     if (this.props.poll === null) {
       return <p>This poll does not exist</p>
@@ -35,7 +36,7 @@ class Poll extends Component {
           By <img src={authorAvatar} alt="Author's avatar" />
         </div>
         <ul>
-          {['aText', 'bText', 'cText', 'dText'].map((key) => {
+          {['aText', 'bText', 'cText', 'dText'].map(key => {
             const count = poll[key[0] + 'Votes'].length
 
             return (
