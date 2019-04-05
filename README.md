@@ -26,3 +26,9 @@
 
     4.3. **weather** Proyecto Weather app using the [Open Weather API](http://openweathermap.org/api).
 
+5. ### Redux
+
+    5.1. **todos**.  App con create-react-app + redux.
+
+    5.2 **redux-polls**.  App de encuestas usando redux.
+
