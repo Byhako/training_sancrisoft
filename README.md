@@ -28,7 +28,9 @@
 
 5. ### Redux
 
-    5.1. **todos**.  App con create-react-app + redux.
+    5.1. **quiz-redux** Pantallazos de los quices.
 
-    5.2 **redux-polls**.  App de encuestas usando redux.
+    5.2. **Redux/todos**.  App con create-react-app + redux.
+
+    5.3 **Redux/redux-polls**.  App de encuestas usando redux.
 
