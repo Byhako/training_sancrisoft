@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import ImageInput from './ImagenInput'
 import serializeForm from 'form-serialize'
+import PropTypes from 'prop-types'
 
 import anonimo from './anonimus.png'
 
@@ -13,10 +14,7 @@ class CreateContact extends Component {
       console.log(values)
       values['avatarURL'] = anonimo
     }
-    if (this.props.onCreateContact) {
-
-      this.props.onCreateContact(values)
-    }
+    this.props.onCreateContact(values)
   }
 
   render () {
@@ -42,6 +40,10 @@ class CreateContact extends Component {
       </div>
     )
   }
+}
+
+CreateContact.propTypes = {
+  onCreateContact: PropTypes.func.isRequired
 }
 
 export default CreateContact
