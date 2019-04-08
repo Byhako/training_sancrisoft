@@ -1,14 +1,17 @@
 import React from 'react'
+import Form from './Form'
 import '../styles/home.css'
 
-const Home = ({ search }) => {
+const Home = ({ onSearch, cityValue, onChangeCity }) => {
   return (
     <div className='container'>
       <h1>Entre a City and State</h1>
-      <form onSubmit={search}>
-        <input type="text" name='city' placeholder='St. George, Utah' />
-        <button className='btn'>Get Weather</button>
-      </form>
+      <Form
+        classFrom="form-home"
+        onSearch={onSearch}
+        onChangeCity={onChangeCity}
+        cityValue={cityValue}
+      />
     </div>
   )
 }

@@ -1,15 +1,16 @@
 import React, { Component, Fragment } from 'react'
 import serializeForm from 'form-serialize'
+import { Redirect } from 'react-router-dom'
+
 
 import Nav from './Nav'
 import Home from './Home'
-import Results from './Results'
 
 class App extends Component {
 
   state = {
     inputNav: '',
-    input: '',
+    inputHome: '',
     search: false,
     city: ''
   }
@@ -19,32 +20,33 @@ class App extends Component {
   handleSearch = e => {
     e.preventDefault()
     const { city } = serializeForm(e.target, { hash: true })
-    document.getElementById("form-nav").reset()
     if (city) {
-      this.setState({city, search: true, input: '', inputNav: ''})
+      this.setState({city, search: true, inputHome: '', inputNav: ''})
     }
   }
 
-  handleChange1 = e => this.setState({inputNav: e.target.value})
-  handleChange2 = e => this.setState({input: e.target.value})
+  changeCityNav = e => this.setState({inputNav: e.target.value})
+  changeCityHome = e => this.setState({inputHome: e.target.value})
 
   render () {
-    const { search, city, inputNav, input } = this.state
+    const { search, city, inputNav, inputHome } = this.state
     return (
       <Fragment>
         <Nav
-          search={this.handleSearch}
+          onSearch={this.handleSearch}
           toHome={this.toHome}
-          input={inputNav}
-          change={this.handleChange1}
+          cityValue={inputNav}
+          onChangeCity={this.changeCityNav}
         />
         {search ? (
-          <Results city={city}/>
+          <Redirect
+            to={{pathname: `/results/${city}`}}
+          />
         ) : (
           <Home
-            search={this.handleSearch}
-            input={input}
-            change={this.handleChange2}
+            onSearch={this.handleSearch}
+            cityValue={inputHome}
+            onChangeCity={this.changeCityHome}
           />
         )}
       </Fragment>

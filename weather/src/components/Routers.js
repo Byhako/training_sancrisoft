@@ -11,7 +11,7 @@ function Routers () {
     <BrowserRouter>
       <Switch>
         <Route exact path='/' component={App} />
-        <Route exact path='/results' component={Results} />
+        <Route path='/results/:city' component={Results} />
         <Route component={noFound} />
       </Switch>
     </BrowserRouter>
