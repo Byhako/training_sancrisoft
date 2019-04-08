@@ -5,16 +5,16 @@ import {
   handleAddTodo,
   handleDeleteTodo,
   handleToggle
-} from '../actions/todos'
+} from '../helpers/todos'
 
 class Todos extends React.Component {
+  state = {
+    inputTodos: ''
+  }
   addItem = (e) => {
     e.preventDefault()
-
-    this.props.dispatch(handleAddTodo(
-      this.input.value,
-      () => this.input.value = ''
-    ))
+    this.props.dispatch(handleAddTodo(this.state.inputTodos))
+    this.setState({inputTodos: ''})
   }
   removeItem = (todo) => {
     this.props.dispatch(handleDeleteTodo(todo))
@@ -23,6 +23,8 @@ class Todos extends React.Component {
     this.props.dispatch(handleToggle(id))
   }
 
+  handleInput = e => this.setState({inputTodos: e.target.value})
+
   render() {
     return (
       <div>
@@ -30,7 +32,8 @@ class Todos extends React.Component {
         <input
           type='text'
           placeholder='Add Todo'
-          ref={(input) => this.input = input}
+          value={this.state.inputTodos}
+          onChange={this.handleInput}
         />
         <button onClick={this.addItem}>Add Todo</button>
 

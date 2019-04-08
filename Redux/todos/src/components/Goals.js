@@ -4,20 +4,25 @@ import List from './List'
 import {
   handleAddGoal,
   handleDeleteGoal
-} from '../actions/goals'
+} from '../helpers/goals'
 
 class Goals extends React.Component {
-  addItem = (e) => {
-    e.preventDefault()
+  state = {
+    inputGoals: ''
+  }
 
-    this.props.dispatch(handleAddGoal(
-      this.input.value,
-      () => this.input.value = ''
-    ))
+  addItem = (e) => {
+    e.preventDefault()  
+
+    this.props.dispatch(handleAddGoal(this.state.inputGoals))
+    this.setState({inputGoals: ''})
   }
   removeItem = (goal) => {
     this.props.dispatch(handleDeleteGoal(goal))
   }
+
+  handleInput = e => this.setState({inputGoals: e.target.value})
+
   render() {
     return (
       <div>
@@ -25,7 +30,8 @@ class Goals extends React.Component {
         <input
           type='text'
           placeholder='Add Goal'
-          ref={(input) => this.input = input}
+          value={this.state.inputGoals}
+          onChange={this.handleInput}
         />
         <button onClick={this.addItem}>Add Goal</button>
 

@@ -9,16 +9,29 @@ const WrapperButton = ({ item, fn }) => {
   )
 }
 
+
+const WrapperSpan= ({ item, fn, style }) => {
+  const handleClick = () => {
+      fn(item.id)
+  }
+  return (
+      <span 
+        style={style}
+        onClick={fn && handleClick}
+      >{item.name}</span>
+  )
+}
+
+
 const List = props => {
   return (
     <ul>
       {props.items.map((item) => (
         <li key={item.id}>
-          <span
-            onClick={() => props.toggle && props.toggle(item.id)}
-            style={{textDecoration: item.complete ? 'line-through' : 'none'}}>
-              {item.name}
-          </span>
+          <WrapperSpan
+            item={item} fn={props.toggle}
+            style={{textDecoration: item.complete ? 'line-through' : 'none'}}
+          />
           <WrapperButton item={item} fn={props.remove} />
         </li>
       ))}

@@ -19,7 +19,7 @@ const Leaderboard = ({ users }) => {
   )
 }
 
-function mapStateProps ({ users }) {
+const mapStateProps = ({ users }) => {
   return {
     users: Object.keys(users)
       .map((id) => {

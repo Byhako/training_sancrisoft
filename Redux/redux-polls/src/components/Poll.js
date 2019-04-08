@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { getPercentage } from '../utils/helpers'
-import { handleAddAnswer } from '../actions/answers'
+import { handleAddAnswer } from '../helpers/answers'
 
 const getVoteKeys = () => ['aVotes', 'bVotes', 'cVotes', 'dVotes']
 
@@ -63,7 +63,7 @@ class Poll extends Component {
   }
 }
 
-function mapStateToProps ({ authedUser, polls, users}, { match }) {
+const mapStateToProps = ({ authedUser, polls, users}, { match }) => {
   const { id } = match.params
   const poll = polls[id]
 

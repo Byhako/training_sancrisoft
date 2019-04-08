@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { handleAddPoll } from '../actions/polls'
+import { handleAddPoll } from '../helpers/polls'
 
 class AddPoll extends Component {
   state = {
@@ -9,30 +9,30 @@ class AddPoll extends Component {
     b: '',
     c: '',
     d: '',
+    disabled: true
   }
   handleInputChange = (e) => {
     const { value, name } = e.target
-
-    this.setState(() => ({
-      [name]: value
-    }))
-  }
-  isDisabled = () => {
-    const { question, a, b, c, d } = this.state
-
-    return question === ''
+    this.setState({[name]: value}, () => {
+      const { question, a, b, c, d } = this.state
+      const disabled = question === ''
       || a === ''
       || b === ''
       || c === ''
       || d === ''
+      
+      if (!disabled) this.setState({disabled})
+    })
+
   }
+
   handleSubmit = (e) => {
     e.preventDefault()
     this.props.history.push('/')
     this.props.dispatch(handleAddPoll(this.state))
   }
   render() {
-    const { question, a, b, c, d } = this.state
+    const { question, a, b, c, d, disabled } = this.state
 
     return (
       <form className='add-form' onSubmit={this.handleSubmit}>
@@ -87,7 +87,7 @@ class AddPoll extends Component {
           type='text'
         />
 
-        <button className='btn' type='submit' disabled={this.isDisabled()}>
+        <button className='btn' type='submit' disabled={disabled}>
           Submit
         </button>
       </form>

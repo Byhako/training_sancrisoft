@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { handleInitialData } from '../actions/shared'
+import { handleInitialData } from '../helpers/shared'
 import Dashboard from './Dashboard'
 import LoadingBar from 'react-redux-loading'
 import Leaderboard from './Leaderboard'
@@ -36,10 +36,10 @@ class App extends Component {
   }
 }
 
-function mapStateToProps ({ authedUser }) {
-  return {
+const mapStateToProps = ({ authedUser }) => (
+  {
     loading: authedUser === null
   }
-}
+)
 
 export default connect(mapStateToProps)(App)

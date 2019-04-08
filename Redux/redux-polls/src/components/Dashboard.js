@@ -47,7 +47,7 @@ class Dashboard extends Component {
   }
 }
 
-function mapStateToProps ({ authedUser, polls, users }) {
+const mapStateToProps = ({ authedUser, polls, users }) => {
   const answers = users[authedUser].answers
 
   const answered = answers.map((id) => polls[id])
